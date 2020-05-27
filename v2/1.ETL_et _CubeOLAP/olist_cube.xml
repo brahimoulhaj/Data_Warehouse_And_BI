@@ -1,0 +1,70 @@
+<Schema name="olist_schema" description="mini projet BI">
+  <Cube name="cube_commands" visible="true" cache="true" enabled="true">
+    <Table name="fait_commandes">
+    </Table>
+    <Dimension type="TimeDimension" visible="true" foreignKey="temps_id" highCardinality="false" name="dim_temps">
+      <Hierarchy name="temps" visible="true" hasAll="true" primaryKey="id">
+        <Table name="dim_temps">
+        </Table>
+        <Level name="annee" visible="true" table="dim_temps" column="annee" nameColumn="annee" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" captionColumn="annee">
+        </Level>
+        <Level name="quartier" visible="true" table="dim_temps" column="quartiers" nameColumn="quartiers" type="String" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never" captionColumn="quartiers">
+        </Level>
+        <Level name="mois" visible="true" table="dim_temps" column="mois" nameColumn="mois" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" captionColumn="mois">
+        </Level>
+        <Level name="jour" visible="true" table="dim_temps" column="jour" nameColumn="jour" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" captionColumn="jour">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="client_id" highCardinality="false" name="dim_client">
+      <Hierarchy name="client" visible="true" hasAll="true" primaryKey="id">
+        <Table name="dim_clients">
+        </Table>
+        <Level name="region" visible="true" table="dim_clients" column="region" nameColumn="region" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="region">
+        </Level>
+        <Level name="code_postal" visible="true" table="dim_clients" column="code_postal" nameColumn="code_postal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="code_postal">
+        </Level>
+        <Level name="ville" visible="true" table="dim_clients" column="ville" nameColumn="ville" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="ville">
+        </Level>
+        <Level name="reference" visible="true" table="dim_clients" column="reference" nameColumn="reference" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="reference">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="vendeur_id" highCardinality="false" name="dim_vendeur">
+      <Hierarchy name="vendeur" visible="true" hasAll="true" primaryKey="id">
+        <Table name="dim_vendeurs">
+        </Table>
+        <Level name="region" visible="true" table="dim_vendeurs" column="region" nameColumn="region" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="region">
+        </Level>
+        <Level name="code_postal" visible="true" table="dim_vendeurs" column="code_postal" nameColumn="code_postal" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="code_postal">
+        </Level>
+        <Level name="ville" visible="true" table="dim_vendeurs" column="ville" nameColumn="ville" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="ville">
+        </Level>
+		<Level name="reference" visible="true" table="dim_vendeurs" column="reference" nameColumn="reference" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="reference">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="produit_id" highCardinality="false" name="dim_produit">
+      <Hierarchy name="produit" visible="true" hasAll="true" primaryKey="id">
+        <Table name="dim_produits">
+        </Table>
+        <Level name="categorie" visible="true" table="dim_produits" column="categorie" nameColumn="categorie" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="categorie">
+        </Level>
+        <Level name="reference" visible="true" table="dim_produits" column="reference" nameColumn="reference" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="reference">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="status_id" highCardinality="false" name="dim_status">
+      <Hierarchy name="status" visible="true" hasAll="true" primaryKey="id">
+        <Table name="dim_status">
+        </Table>
+        <Level name="status" visible="true" table="dim_status" column="status" nameColumn="status" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="quantite" column="quantite" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="chiffre_affaire" column="chiffre_affaire" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
